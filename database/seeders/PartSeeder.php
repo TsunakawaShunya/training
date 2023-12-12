@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Menu;
+use App\Models\Part;
 
-class MenuSeeder extends Seeder
+class PartSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        Menu::factory()->count(10)->create();
+        Part::factory()->count(10)->create();
     }
 }
