@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class MenuFactory extends Factory
+class PartFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,6 @@ class MenuFactory extends Factory
     {
         return [
             'name' => fake()->word,
-            'weight' => fake()->randomFloat(1, 0, 100),
         ];
     }
 }
