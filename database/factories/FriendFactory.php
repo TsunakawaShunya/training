@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Friend>
  */
-class LikeFactory extends Factory
+class FriendFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            'post_id' => 1,
+            'id_from' => 1,
+            'id_to' => 2,
         ];
     }
 }
