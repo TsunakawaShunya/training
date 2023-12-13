@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('image')->nullable();        // プロフィール画像へのリンク
+        Schema::table('menus', function (Blueprint $table) {
+            $table->foreignId('part_id')->constrained()->onDelete('cascade');        // FK:part_id
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('menus', function (Blueprint $table) {
             //
         });
     }

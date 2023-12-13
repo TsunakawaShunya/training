@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('image')->nullable();        // プロフィール画像へのリンク
+        Schema::create('menus', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);     // メニュー名
+            $table->double('weight')->unsigned();       // 重さ kg
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('menus');
     }
 };
