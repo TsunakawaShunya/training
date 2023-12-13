@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);     // 名前
+            $table->string('name', 50);     // 部位
         });
     }
 
