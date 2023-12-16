@@ -15,6 +15,6 @@ class CalorieSeeder extends Seeder
      */
     public function run()
     {
-        Calorie::factory()->count(10)->create();
+        Calorie::factory()->count(20)->create();
     }
 }

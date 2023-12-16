@@ -15,6 +15,6 @@ class CheckSeeder extends Seeder
      */
     public function run()
     {
-        Check::factory()->count(10)->create();
+        Check::factory()->count(20)->create();
     }
 }

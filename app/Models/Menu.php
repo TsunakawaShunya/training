@@ -21,4 +21,9 @@ class Menu extends Model
         return $this->hasMany(Check::class);
     }
 
+    protected $filleable = [
+        'name',
+        'weight',
+        'part_id',
+    ];
 }
