@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Part;
+use Illuminate\Support\Facades\DB;
 
 class PartSeeder extends Seeder
 {
@@ -15,6 +16,12 @@ class PartSeeder extends Seeder
      */
     public function run()
     {
-        Part::factory()->count(10)->create();
+        DB::table('parts')->insert([
+            ['name' => '胸'],
+            ['name' => '肩'],
+            ['name' => '背中'],
+            ['name' => '足'],
+            ['name' => '腕'],
+            ]);
     }
 }

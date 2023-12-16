@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Part;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,9 @@ class MenuFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word,
             'weight' => fake()->randomFloat(1, 0, 100),
-            'part_id' => 1,
+            'part_id' => fake()->numberBetween(1, 5),
         ];
     }
 }

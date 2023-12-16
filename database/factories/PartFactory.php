@@ -16,8 +16,5 @@ class PartFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'name' => fake()->word,
-        ];
     }
 }

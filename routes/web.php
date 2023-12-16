@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PartController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/start-training', [MenuController::class, 'show'])->name('menu.show');
+Route::get('/start-training/{part}', [MenuController::class, 'add'])->name('menu.add');
+Route::get('/start-training/{part}/store', [MenuController::class, 'store'])->name('menu.store');
 
 require __DIR__.'/auth.php';
