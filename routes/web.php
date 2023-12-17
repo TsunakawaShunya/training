@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/start-training', [MenuController::class, 'show'])->name('menu.show');
 Route::get('/start-training/{part}', [MenuController::class, 'add'])->name('menu.add');
-Route::get('/start-training/{part}/store', [MenuController::class, 'store'])->name('menu.store');
+Route::post('/start-training', [MenuController::class, 'store'])->name('menu.store');
 
 require __DIR__.'/auth.php';

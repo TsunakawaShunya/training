@@ -19,25 +19,24 @@
                 @endforeach
             </div>
             
-            <from action="/menus" method="POST">
+            <form action="/start-training" method="POST">
                 @csrf
+                <div class="part">
+                    <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>
+                </div>
                 <div class="name">
                     <h2>メニュー名</h2>
-                    <input type="text" name"menu[name]" placeholder="メニュー名"/>
+                    <input type="text" name="menu[name]" placeholder="メニュー名"/>
                 </div>
                 <div class="weight">
                     <h2>重量</h2>
-                    <input type="text" name"menu[weight]" placeholder="重量 kg"/>
+                    <input type="text" name="menu[weight]" placeholder="重量 kg"/>
                 </div>
                 <input type="submit" value="追加">
-            </from>
+            </form>
         </body>
         <div class="footer">
             <a href="/start-training">戻る</a>
         </div>
     </html>
 </x-app-layout>
-
-
-
-<!-- 追加，リダイレクトできない -->
