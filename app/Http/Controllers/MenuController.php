@@ -23,7 +23,7 @@ class MenuController extends Controller
         // 追加 
         $menu->name = $input["name"];
         $menu->weight = $input["weight"];
-        $menu->part_id = $part->id;
+        $menu->part_id = $input["part_id"];
         $menu->save();
         
         return redirect('/start-training');
