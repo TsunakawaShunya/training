@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/start-training', [MenuController::class, 'show'])->name('menu.show');
 Route::get('/start-training/{part}', [MenuController::class, 'add'])->name('menu.add');
 Route::post('/start-training', [MenuController::class, 'store'])->name('menu.store');
+Route::post('/training', [CheckController::class, 'check'])->name('menu.check');
+Route::get('/training', [CheckController::class, 'check_training'])->name('menu.check_training');
 
 require __DIR__.'/auth.php';

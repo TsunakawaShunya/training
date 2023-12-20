@@ -20,6 +20,6 @@
                     @endforeach
                 </div>
             </div>
-        </body>
+                    </body>
     </html>
 </x-app-layout>

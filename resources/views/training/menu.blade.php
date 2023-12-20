@@ -10,19 +10,29 @@
         <body>
             <div class="menus">
                 <h1>{{ $part->name }}</h1>
-                @foreach($menus as $menu)
-                    @if($menu->part_id == $part->id)
-                        <ul>
-                            {{ $menu->name }} : {{ $menu->weight }}
-                        </ul>
-                    @endif
-                @endforeach
+                <form action="/training" method="POST">
+                    @foreach($menus as $menu)
+                        @if($menu->part_id == $part->id)
+                            <ul>
+                                @csrf
+                                <label>
+                                    <input type="checkbox" name="checks[status]" value="1">
+                                    {{ $menu->name }} : {{ $menu->weight }} kg
+                                </label>
+                            </ul>
+                        @endif
+                    @endforeach
+                    <input type="submit" value="開始">
+                </form>
             </div>
             
             <form action="/start-training" method="POST">
                 @csrf
                 <div class="part">
                     <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>
+                </div>
+                <div class="user">
+                    <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
                 </div>
                 <div class="name">
                     <h2>メニュー名</h2>

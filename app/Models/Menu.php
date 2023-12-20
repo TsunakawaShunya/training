@@ -21,9 +21,10 @@ class Menu extends Model
         return $this->hasMany(Check::class);
     }
 
-    protected $filleable = [
+    protected $fillable = [
         'name',
         'weight',
         'part_id',
+        'user_id'
     ];
 }

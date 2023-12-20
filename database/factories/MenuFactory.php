@@ -21,6 +21,7 @@ class MenuFactory extends Factory
             'name' => fake()->word,
             'weight' => fake()->randomFloat(1, 0, 100),
             'part_id' => fake()->numberBetween(1, 5),
+            'user_id' => fake()->numberBetween(1, 5),
         ];
     }
 }
