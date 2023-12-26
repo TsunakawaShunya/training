@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class MenuController extends Controller
 {
     public function show(Menu $menu, Part $part) {
-        return view('training.start-training')->with(['parts' => $part->get(), 'menus' => $menu::where('user_id', Auth::id())->get()]);
+        return view('training.index')->with(['parts' => $part->get(), 'menus' => $menu::where('user_id', Auth::id())->get()]);
     }
     
     public function add(Part $part) {
@@ -24,6 +24,6 @@ class MenuController extends Controller
         // 追加
         $menu->fill($input)->save();
         
-        return redirect('/start-training');
+        return redirect('/training/index');
     }
 }
