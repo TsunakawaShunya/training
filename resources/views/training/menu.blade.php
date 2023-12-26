@@ -10,23 +10,20 @@
         <body>
             <div class="menus">
                 <h1>{{ $part->name }}</h1>
-                <form action="/training" method="POST">
+                <form action="/training/menu/{{ $part->id }}/start" method="POST">
                     @foreach($menus as $menu)
                         @if($menu->part_id == $part->id)
                             <ul>
                                 @csrf
-                                <label>
-                                    <input type="checkbox" name="checks[status]" value="1">
-                                    {{ $menu->name }} : {{ $menu->weight }} kg
-                                </label>
+                                <input type="checkbox" name="menu[id][]" value="{{ $menu->id }}"> 
+                                {{ $menu->name }} : {{ $menu->weight }} kg
                             </ul>
                         @endif
                     @endforeach
                     <input type="submit" value="開始">
                 </form>
             </div>
-            
-            <form action="/start-training" method="POST">
+            <form action="/training/index" method="POST">
                 @csrf
                 <div class="part">
                     <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>
@@ -46,7 +43,7 @@
             </form>
         </body>
         <div class="footer">
-            <a href="/start-training">戻る</a>
+            <a href="/training/index">戻る</a>
         </div>
     </html>
 </x-app-layout>

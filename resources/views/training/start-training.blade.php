@@ -8,18 +8,22 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
-            <div class="menus">
-                <div class="chest">
-                    @foreach($parts as $part)
-                        <a href="/start-training/{{ $part->id }}">{{ $part->name }}</a>
-                        @foreach($menus as $menu)
-                            @if($menu->part_id == $part->id)
-                                <h1>{{ $menu->name }} : {{ $menu->weight }} kg</h1>
-                            @endif
-                        @endforeach
+            <div class="menu">
+                <h1>トレーニング中</h1>
+                <form action="/training/menu/{{ $checks->first()->menu->part_id }}/end" method="POST">
+                    @foreach($checks as $check)
+                        <ul>
+                            @csrf
+                            <input type="checkbox" name="check[menu_id][]" value="{{ $check->menu_id }}">
+                            {{ $check->menu->name }} : {{ $check->menu->weight }} kg
+                        </ul>
                     @endforeach
-                </div>
+                    <input type="submit" value="終了">
+                </form>
             </div>
-                    </body>
+        </body>
+        <div class="footer">
+            <a href="/training/index">戻る</a>
+        </div>
     </html>
 </x-app-layout>

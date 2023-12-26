@@ -31,10 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/start-training', [MenuController::class, 'show'])->name('menu.show');
-Route::get('/start-training/{part}', [MenuController::class, 'add'])->name('menu.add');
-Route::post('/start-training', [MenuController::class, 'store'])->name('menu.store');
-Route::post('/training', [CheckController::class, 'check'])->name('menu.check');
-Route::get('/training', [CheckController::class, 'check_training'])->name('menu.check_training');
+Route::get('/training/index', [MenuController::class, 'show'])->name('menu.show');
+Route::get('/training/menu/{part}', [MenuController::class, 'add'])->name('menu.add');
+Route::post('/training/index', [MenuController::class, 'store'])->name('menu.store');
+Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])->name('training-start.show');
+Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
+Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
+Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
 
 require __DIR__.'/auth.php';
