@@ -14,8 +14,8 @@ class CheckController extends Controller
         $inputMenus = $request->input('menu');
         $userId = Auth::id();
         
-        // 登録レコードすべてのstatusを0にする
-        Check::query()->update(['status' => 0]);
+        // statusが1のものを0にする
+        Check::where("user_id", Auth::id())->where("status", 1)->update(['status' => 0]);
 
         foreach ($inputMenus['id'] as $menuId) {
             $check = new Check();
@@ -44,7 +44,7 @@ class CheckController extends Controller
             $endCheck = new Check();
             $endCheck = Check::where("user_id", Auth::id())->where("menu_id", $menuId)->where("status", 1)->first();
             //dd($endCheck);
-            $endCheck->status = 0;
+            $endCheck->status = 2;      // 終了
             $endCheck->save();
             
         }
@@ -57,5 +57,21 @@ class CheckController extends Controller
     public function showEnd() {
         $endChecks = Check::where("user_id", Auth::id())->where("updated_at", now())->get();
         return view("training.end-training")->with(['endChecks' => $endChecks]);
+    }
+    
+    // トレーニングをカレンダーに記入
+    public function recordEndTraining()
+    {
+        $endTrainings = Check::where("user_id", Auth::id())->where("status", 2)->get();
+
+        foreach($endTrainings as $endTraining) {
+            $menu = Menu::find($endTraining->menu_id);
+            
+            $response[] = [
+                'title' => $menu->name . ":" . $menu->weight . "kg",
+                'start' => $endTraining->updated_at->toDateString(),
+            ];
+        }
+        return response()->json($response);
     }
 }

@@ -9,11 +9,11 @@
         </head>
         <body>
             <h1>お疲れさまでした！</h1>
-            <ul>
-                @foreach($endChecks as $endCheck)
+            @foreach($endChecks as $endCheck)
+                <ul>
                     {{ $endCheck->menu->name }} : {{ $endCheck->menu->weight }} kg
-                @endforeach
-            </ul>
+                </ul>
+            @endforeach
         </body>
         <div class="footer">
             <a href="/training/index">戻る</a>
