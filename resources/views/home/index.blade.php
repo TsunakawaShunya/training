@@ -42,7 +42,7 @@
           </form>
         </div>
         
-        <!-- グラフ -->
+        <!-- 体重グラフ -->
         <canvas id="weight_chart"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         
@@ -80,7 +80,72 @@
               }
             }
           });
+        </script>
+        
+        
+        <!-- カロリー -->
+        <div class="add-calorie-log">
+          <form action="/home/index" method="POST">
+            @method('patch')
+            @csrf
+            <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
+            <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 kcal"/>
+            <input type="text" name=calorie[protain] placeholder="たんぱく質 kcal"/>
+            <input type="text" name=calorie[fat] placeholder="脂質 kcal"/>
+            <input type="submit" value="追加">
+          </form>
+        </div>
+
+        <!-- カロリーグラフ -->
+        <h1>カロリ－グラフ</h1>
+        <canvas id="calorie_chart"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script>
+          function calorieChart() {
+              var ctx = document.getElementById("calorie_chart").getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels:  ["00年", "05年", "10年", "15年", "20年"],
+                  datasets: [
+                    {
+                        label: "系列Ａ",
+                        data: [10, 20,  5, 15, 10],
+                        backgroundColor: "red"
+                    },
+                    {
+                        label: "系列Ｂ",
+                        data: [ 5, 10, 10,  5,  8],
+                        backgroundColor: "blue"
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                  title: {
+                    display: true,
+                    fontSize: 20,
+                    text: "積上げ棒グラフ"
+                  },
+                  legend: {
+                    position: 'bottom'
+                  },                
+                  scales: {
+                    xAxes: [
+                        {
+                            stacked: true  // 積み上げの指定
+                        }
+                    ],
+                    yAxes: [
+                        {
+                            stacked: true  //  積み上げの指定
+                        }
+                    ]
+                  }
+                }
+              });
+            }
         </script>      
       </body>
-    </html>
+  </html>
 </x-app-layout>

@@ -47,4 +47,8 @@ Route::get('/home/index', [WeightController::class, 'show'])->name('home.show');
 Route::patch('/home/index', [WeightController::class, 'add'])->name('weight.add');
 Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
 
+// shopping部
+Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+Route::get('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+
 require __DIR__.'/auth.php';
