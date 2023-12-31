@@ -43,10 +43,8 @@ class CheckController extends Controller
         foreach($inputMenus['menu_id'] as $menuId) {
             $endCheck = new Check();
             $endCheck = Check::where("user_id", Auth::id())->where("menu_id", $menuId)->where("status", 1)->first();
-            //dd($endCheck);
             $endCheck->status = 2;      // 終了
             $endCheck->save();
-            
         }
         
         $partId = Menu::find(Check::where("updated_at", now())->first()->menu_id)->part_id;
@@ -67,11 +65,11 @@ class CheckController extends Controller
         foreach($endTrainings as $endTraining) {
             $menu = Menu::find($endTraining->menu_id);
             
-            $response[] = [
+            $trainingLog[] = [
                 'title' => $menu->name . ":" . $menu->weight . "kg",
                 'start' => $endTraining->updated_at->toDateString(),
             ];
         }
-        return response()->json($response);
+        return response()->json($trainingLog);
     }
 }
