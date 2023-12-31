@@ -20,14 +20,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(UserSeeder::class);
-        $this->call(PartSeeder::class);
-        $this->call(MenuSeeder::class);
-        $this->call(CheckSeeder::class);
-        $this->call(CalorieSeeder::class);
-        $this->call(PostSeeder::class);
-        $this->call(CommentSeeder::class);
-        $this->call(LikeSeeder::class);
-        $this->call(FriendSeeder::class);
+        //$this->call(UserSeeder::class);
+        //$this->call(PartSeeder::class);
+        //$this->call(MenuSeeder::class);
+        //$this->call(CheckSeeder::class);
+        //$this->call(CalorieSeeder::class);
+        //$this->call(PostSeeder::class);
+        //$this->call(CommentSeeder::class);
+        //$this->call(LikeSeeder::class);
+        //$this->call(FriendSeeder::class);
+        $this->call(WeightSeeder::class);
     }
 }

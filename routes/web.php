@@ -6,6 +6,7 @@ use App\Http\Controllers\PartController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WeightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,8 @@ Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->na
 Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
 
 // home部
-Route::get('/home/index', [UserController::class, 'show'])->name('home.show');
-Route::get('/response', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
+Route::get('/home/index', [WeightController::class, 'show'])->name('home.show');
+Route::patch('/home/index', [WeightController::class, 'add'])->name('weight.add');
+Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
 
 require __DIR__.'/auth.php';

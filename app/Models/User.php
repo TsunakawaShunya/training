@@ -70,4 +70,8 @@ class User extends Authenticatable
     public function friend() {
         return $this->belongsTo(Friend::class);
     }
+    
+    public function weight() {
+        return $this->hasMany(Weight::class);
+    }
 }
