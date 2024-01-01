@@ -12,4 +12,12 @@ class Calorie extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    
+    protected $fillable = [
+        'user_id',
+        'carbohydrate',
+        'protain',
+        'fat',
+    ];
+
 }
