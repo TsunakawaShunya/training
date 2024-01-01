@@ -7,6 +7,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeightController;
+use App\Http\Controllers\CalorieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,11 @@ Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->na
 Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
 
 // home部
-Route::get('/home/index', [WeightController::class, 'show'])->name('home.show');
-Route::patch('/home/index', [WeightController::class, 'add'])->name('weight.add');
 Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
+//Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show');
+//Route::patch('/home/index', [WeightController::class, 'add'])->name('weight.add');
+Route::patch('/home/index', [CalorieController::class, 'add'])->name('calorie.add');
+Route::get('/home/index', [CalorieController::class, 'show'])->name('calorie.show');
 
 // shopping部
 Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
