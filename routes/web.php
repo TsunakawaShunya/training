@@ -45,10 +45,9 @@ Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->n
 
 // home部
 Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
-//Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show');
-//Route::patch('/home/index', [WeightController::class, 'add'])->name('weight.add');
-Route::patch('/home/index', [CalorieController::class, 'add'])->name('calorie.add');
-Route::get('/home/index', [CalorieController::class, 'show'])->name('calorie.show');
+Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show');
+Route::patch('/home/weight', [WeightController::class, 'add'])->name('weight.add');
+Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add');
 
 // shopping部
 Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');

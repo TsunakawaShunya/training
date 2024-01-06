@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CalorieController extends Controller
 {
-    // カロリーget部
-    public function show() {
-        $calorieLog = Calorie::where("user_id", Auth::id())->get();
-        return view("home.index")->with(["calorieLog" => $calorieLog]);
-    }
-    
+
     // カロリーログの追加
     public function add(Request $request) {
         $input = $request->input('calorie');

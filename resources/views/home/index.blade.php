@@ -30,10 +30,60 @@
             });
         </script>
         
+         <!-- 体重 -->
+        <div class="add-weight-log">
+          <form action="/home/weight" method="POST">
+            @method('patch')
+            @csrf
+            <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
+            <input type="text" name=weight[weight] placeholder="今日の体重 kg"/>
+            <input type="submit" value="追加">
+          </form>
+        </div>
+        
+        <!-- 体重グラフ -->
+        <canvas id="weight_chart" width="400"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        
+        <script>
+          const ctx = document.getElementById('weight_chart');
+          const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: @json($weightLog->pluck('created_at')->map(function ($item) {
+                return $item->format('Y-m'); // 'Y-m-d' フォーマットに変更
+              })),
+              datasets: [{
+                label: '体重推移(kg)',
+                data: @json($weightLog->pluck('weight')),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                xAxes: [{
+                  type: 'category',
+                  time: {
+                    unit: 'month', // 一か月刻み
+                    displayFormats: {
+                      month: 'MMM YYYY'
+                    },
+                  },
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 5,
+                  }
+                }]
+              }
+            }
+          });
+        </script>
         
         <!-- カロリー -->
         <div class="add-calorie-log">
-          <form action="/home/index" method="POST">
+          <form action="/home/calorie" method="POST">
             @method('patch')
             @csrf
             <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 kcal"/>
@@ -44,11 +94,10 @@
         </div>
 
         <!-- カロリーグラフ -->
-        <canvas id="calorie_chart" width="400" height="300"></canvas>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <canvas id="calorie_chart" width="400"></canvas>
         <script>
-          const ctx = document.getElementById("calorie_chart").getContext('2d');
-          const myChart = new Chart(ctx, {
+          const ctxCalorie = document.getElementById("calorie_chart").getContext('2d');
+          const myChartCalorie = new Chart(ctxCalorie, {
             type: "bar",
             data: {
               labels:  @json($calorieLog->pluck('created_at')->map(function ($item) {
