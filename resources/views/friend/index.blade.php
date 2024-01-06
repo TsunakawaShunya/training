@@ -9,14 +9,25 @@
         </head>
         <body>
             <div class='myid'>
-                <h1>マイID</h1>
-                {{ Auth::user()->id }} 
+                <h1>マイID:{{ Auth::user()->id }}</h1>
             </div>
 
             <div class='friend-list'>
                 <h1>フレンドリスト</h1>
+            </div>
+            
+            <div class="apply">
                 <a href="/friend/apply">フレンド申請</a>
             </div>
+            
+            <div class="apply-to-list">
+                <a href="/friend/applyTo">フレンド申請中のユーザー一覧</a>
+            </div>
+            
+            <div class="apply-from-list">
+                <a href="/friend/applyFrom">自分宛のフレンド申請一覧</a>
+            </div>
+            
         </body>
     </html>
 </x-app-layout>

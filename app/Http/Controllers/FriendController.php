@@ -23,6 +23,16 @@ class FriendController extends Controller
         return view("friend.confirm")->with(["user" => $user]);
     }
     
+    public function applyTo() {
+        $applyTo = Friend::where("id_from", Auth::id())->get();     // 自分から申請中のユーザー
+        return view('friend.applyTo')->with(["users" => $applyTo]);
+    }
+
+    public function applyFrom() {
+        $applyFrom = Friend::where("id_to", Auth::id())->get();     // 自分宛に申請中のユーザー
+        return view('friend.applyFrom')->with(["users" => $applyFrom]);
+    }
+
     // post
     public function submitConfirmApply(Request $request) {
         $input = $request['user_id'];
@@ -34,7 +44,7 @@ class FriendController extends Controller
     }
     
     public function submitApply(Request $request) {
-        $input = $request['id_from'];
+        $input = $request['id_to'];
         $friend = new Friend();
         $friend->id_from = Auth::id();
         $friend->id_to = $input;
