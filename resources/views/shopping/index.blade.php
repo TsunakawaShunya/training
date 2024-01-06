@@ -43,7 +43,7 @@
                                 <img src="{{ $item['mediumImageUrls'] }}" alt="{{ $item['itemName'] }}の画像">
                             </ul>
                             <ul>
-                                <a href="{{ $item['itemUrl'] }}">
+                                <a href="{{ $item['itemUrl'] }}" target="_blank">
                                     {{ $item['itemName'] }}
                                 </a>
                             </ul>
