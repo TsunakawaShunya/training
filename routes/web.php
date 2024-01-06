@@ -61,5 +61,7 @@ Route::post('/friend/apply/confirm', [FriendController::class, 'submitConfirmApp
 Route::get('/friend/apply/confirm', [FriendController::class, 'confirmApply'])->name('friend.confirmApply');
 Route::post('/friend/apply/complete', [FriendController::class, 'submitApply'])->name('friend.submitApply');
 Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])->name('friend.completeApply');
+Route::get('/friend/applyTo', [FriendController::class, 'applyTo'])->name('friend.applyTo');
+Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
 
 require __DIR__.'/auth.php';

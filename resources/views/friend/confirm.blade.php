@@ -14,7 +14,7 @@
             
             <form action="/friend/apply/complete" method="POST">
                 @csrf
-                <input type="hidden" name="id_from" value="{{ $user->id }}"/>
+                <input type="hidden" name="id_to" value="{{ $user->id }}"/>
                 <input type="submit" value="申請">
             </form>
         </body>
