@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\CalorieController;
+use App\Http\Controllers\FriendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,13 @@ Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.
 // shopping部
 Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
 Route::get('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+
+// friend部
+Route::get('/friend/index', [FriendController::class, 'showIndex'])->name('friend.index');
+Route::get('/friend/apply', [FriendController::class, 'showApply'])->name('friend.apply');
+Route::post('/friend/apply/confirm', [FriendController::class, 'submitConfirmApply'])->name('friend.submitConfirmApply');
+Route::get('/friend/apply/confirm', [FriendController::class, 'confirmApply'])->name('friend.confirmApply');
+Route::post('/friend/apply/complete', [FriendController::class, 'submitApply'])->name('friend.submitApply');
+Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])->name('friend.completeApply');
 
 require __DIR__.'/auth.php';
