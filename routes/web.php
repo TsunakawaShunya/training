@@ -50,6 +50,9 @@ Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show'
 Route::patch('/home/weight', [WeightController::class, 'add'])->name('weight.add');
 Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add');
 
+// map部
+Route::get('/map/index', [UserController::class, 'showMap'])->name('map.show');
+
 // shopping部
 Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
 Route::get('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
