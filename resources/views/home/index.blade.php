@@ -86,9 +86,9 @@
           <form action="/home/calorie" method="POST">
             @method('patch')
             @csrf
-            <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 kcal"/>
-            <input type="text" name=calorie[protain] placeholder="たんぱく質 kcal"/>
-            <input type="text" name=calorie[fat] placeholder="脂質 kcal"/>
+            <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 g"/>
+            <input type="text" name=calorie[protain] placeholder="たんぱく質 g"/>
+            <input type="text" name=calorie[fat] placeholder="脂質 g"/>
             <input type="submit" value="追加">
           </form>
         </div>
@@ -105,17 +105,17 @@
               })),
               datasets: [
                 {
-                    label: "炭水化物 kcal",
+                    label: "炭水化物 g",
                     data: @json($calorieLog->pluck('carbohydrate')),
                     backgroundColor: '#ffa500'
                 },
                 {
-                    label: "たんぱく質 kcal",
+                    label: "たんぱく質 g",
                     data: @json($calorieLog->pluck('protain')),
                     backgroundColor: "red"
                 },
                 {
-                    label: "脂質 kcal",
+                    label: "脂質 g",
                     data: @json($calorieLog->pluck('fat')),
                     backgroundColor: "green"
                 }

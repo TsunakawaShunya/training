@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('menu.show')" :active="request()->routeIs('menu.show')">
                         {{ __('トレーニング') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('map.show')" :active="request()->routeIs('map.sho')">
+                        {{ __('周辺情報') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('shopping.index')" :active="request()->routeIs('shopping.index')">
                         {{ __('ショッピング') }}
                     </x-nav-link>

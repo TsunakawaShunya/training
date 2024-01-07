@@ -10,13 +10,13 @@ use RakutenRws_Client;
 class UserController extends Controller
 {
     public function shopping(Request $request) {
-        //楽天APIを扱うRakutenRws_Clientクラスのインスタンスを作成します
+        //楽天APIを扱うRakutenRws_Clientクラスのインスタンスを作成
         $client = new RakutenRws_Client();
         //定数化
         define("RAKUTEN_APPLICATION_ID"     , config('app.rakuten_id'));
         define("RAKUTEN_APPLICATION_SEACRET", config('app.rakuten_key'));
         
-        //アプリIDをセット！
+        //アプリIDをセット
         $client->setApplicationId(RAKUTEN_APPLICATION_ID);
         
         
@@ -38,12 +38,12 @@ class UserController extends Controller
                 //入力パラメーター
                 'keyword' => $keyword,
             ));
-            // レスポンスが正しいかを isOk() で確認することができます
+
             if ($response->isOk()) {
                 $items = array();
-                //配列で結果をぶち込んで行きます
+                //配列で結果をいれる
                 foreach ($response as $item){
-                    //画像サイズを変えたかったのでURLを整形します
+                    //画像サイズを変えたかったのでURLを整形
                     $str = str_replace("_ex=128x128", "_ex=175x175", $item['mediumImageUrls'][0]['imageUrl']);
                     $items[] = array(
                         'itemName' => $item['itemName'],
@@ -57,5 +57,9 @@ class UserController extends Controller
             }
         }
         return view("shopping.index")->with(['items' => $items]);
+    }
+    
+    public function showMap() {
+        return view("map.index");
     }
 }
