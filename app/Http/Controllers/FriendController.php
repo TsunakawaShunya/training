@@ -14,6 +14,21 @@ class FriendController extends Controller
         return view('friend.index');
     }
     
+    public function showList() {
+        // 例21->22と22->21のレコードがあるとき，フレンド
+        $id_to_s = Friend::where("id_from", Auth::id())->get()->pluck('id_to');
+        //dd($id_to_s);
+        foreach($id_to_s as $id_to) {
+            $friends_id = Friend::where("id_from", $id_to)->where("id_to", Auth::id())->get()->pluck('id_from');
+        }
+        
+        foreach($friends_id as $friend_id) {
+            $friends = User::where("id", $friend_id)->get();
+        }
+        //dd($friends_id);
+        return view('friend.list')->with(["friends" => $friends]);
+    }
+
     public function showApply() {
         return view('friend.apply');
     }

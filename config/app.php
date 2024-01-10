@@ -216,4 +216,7 @@ return [
     // 楽天市場API
     'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
     'rakuten_key' => env('RAKUTEN_APPLICATION_SEACRET', false),
+    
+    // google APIキー
+    'google_key' => env('GOOGLE_API_KEY', false),
 ];

@@ -8,6 +8,10 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+            <div class="title">
+                <h1>フレンド申請</h1>
+            </div>
+            
             <div class='myid'>
                 <h1>マイID</h1>
                 {{ Auth::user()->id }} 

@@ -8,6 +8,10 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
+            <div class="title">
+                <h1>フレンド申請確認</h1>
+            </div>
+
             <div class="comfirm">
                 <h2>{{ $user->name }}さんにフレンド申請しますか？</h2>
             </div>

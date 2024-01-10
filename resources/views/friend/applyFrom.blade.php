@@ -8,7 +8,10 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
-            <h1>フレンド申請中のユーザー一覧</h1>
+            <div class="title">
+                <h1>自分宛のフレンド申請一覧</h1>
+            </div>
+
             @foreach($users as $user)
                 <ul>
                     {{ $user->id_from }}
