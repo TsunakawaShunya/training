@@ -9,6 +9,7 @@
         </head>
         <body>
             <div class='greeting'>
+                <h1>ショッピング</h1>
                 <h1>こんにちは！{{ Auth::user()->name }} さん！</h1>
             </div>
             

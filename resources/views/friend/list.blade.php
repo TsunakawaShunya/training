@@ -9,13 +9,14 @@
         </head>
         <body>
             <div class="title">
-                <h1>フレンド申請中のユーザー一覧</h1>
+                <h1>フレンド一覧</h1>
             </div>
-
-            @foreach($users as $user)
-                <ul>
-                    {{ $user->id_to }}
-                </ul>
+            
+            @foreach($friends as $friend)
+                <li>
+                    id:{{ $friend->id }}
+                    名前:{{ $friend->name }}
+                </li>
             @endforeach
         </body>
     </html>

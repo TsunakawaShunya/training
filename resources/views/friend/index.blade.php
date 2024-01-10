@@ -8,27 +8,29 @@
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         </head>
         <body>
-            <div class='myid'>
+            <div class="title">
+                <h1>フレンド</h1>
+            </div>
+            
+            <div class="myid">
                 <h1>マイID:{{ Auth::user()->id }}</h1>
             </div>
 
             <div class='friend-list'>
-                <h1>フレンドリスト</h1>
+                <a href="/friend/list">フレンドリスト</a>
             </div>
             
             <div class="apply">
                 <a href="/friend/apply">フレンド申請</a>
             </div>
             
-            <div class="apply-to-list">
+            <div class="apply-to">
                 <a href="/friend/applyTo">フレンド申請中のユーザー一覧</a>
             </div>
             
-            <div class="apply-from-list">
+            <div class="apply-from">
                 <a href="/friend/applyFrom">自分宛のフレンド申請一覧</a>
             </div>
-            
         </body>
     </html>
 </x-app-layout>
-
