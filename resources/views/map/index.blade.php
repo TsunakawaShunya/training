@@ -14,8 +14,7 @@
         </div>
         
         <div id="map" style="width:800px; height:400px"></div>
-        <h1>サンプルコード：https://developers.google.com/maps/documentation/javascript/examples/place-search#maps_place_search-javascript</h1>
-        
+
         <div class="blue-pin">
           <img src='http://maps.google.com/mapfiles/ms/icons/blue-dot.png' alt="青ピン">フィットネス施設
         </div>
@@ -53,7 +52,7 @@
             infowindow = new google.maps.InfoWindow();
             map = new google.maps.Map(document.getElementById("map"), {
               center: currentLocation,
-              zoom: 15,
+              zoom: 13,
             });
             
             const currentLocationMarker = new google.maps.Marker({
@@ -83,6 +82,7 @@
   
             service = new google.maps.places.PlacesService(map);
             service.nearbySearch(gymRequest, (results, status) => callback(results, status, bluePinUrl));
+            service.nearbySearch(spaRequest, (results, status) => callback(results, status, greenPinUrl));
           }
           
           // ジム用コールバック関数

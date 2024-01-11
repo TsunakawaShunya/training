@@ -21,6 +21,10 @@ class Menu extends Model
         return $this->hasMany(Check::class);
     }
 
+    public function post() {
+        return $this->belongsToMany(Post::class);
+    }
+
     protected $fillable = [
         'name',
         'weight',

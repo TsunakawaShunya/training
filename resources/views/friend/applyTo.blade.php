@@ -12,9 +12,15 @@
                 <h1>フレンド申請中のユーザー一覧</h1>
             </div>
 
-            @foreach($users as $user)
+            @foreach($appliesTo as $applyTo)
                 <ul>
-                    {{ $user->id_to }}
+                    {{ $applyTo->id_to }}
+                    <form action="/friend/applyTo/cancel" method="POST">
+                        @method('patch')
+                        @csrf
+                        <input type="hidden" name="applyTo" value="{{ $applyTo->id_to }}"/>
+                        <input type="submit" value="取り消し">
+                    </form>
                 </ul>
             @endforeach
         </body>
