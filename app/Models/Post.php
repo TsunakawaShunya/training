@@ -21,5 +21,7 @@ class Post extends Model
         return $this->belongsTo(Like::class);
     }
 
-
+    public function menu() {
+        return $this->belongsToMany(Menu::class);
+    }
 }

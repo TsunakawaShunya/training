@@ -9,23 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
-    // get
+    // ----------------------------get----------------------------
     public function showIndex() {
         return view('friend.index');
     }
     
     public function showList() {
-        // 例21->22と22->21のレコードがあるとき，フレンド
-        $id_to_s = Friend::where("id_from", Auth::id())->get()->pluck('id_to');
-        //dd($id_to_s);
-        foreach($id_to_s as $id_to) {
-            $friends_id = Friend::where("id_from", $id_to)->where("id_to", Auth::id())->get()->pluck('id_from');
-        }
-        
-        foreach($friends_id as $friend_id) {
-            $friends = User::where("id", $friend_id)->get();
-        }
-        //dd($friends_id);
+        $friends = $this->friends();
         return view('friend.list')->with(["friends" => $friends]);
     }
 
@@ -40,7 +30,7 @@ class FriendController extends Controller
     
     public function applyTo() {
         $applyTo = Friend::where("id_from", Auth::id())->get();     // 自分から申請中のユーザー
-        return view('friend.applyTo')->with(["users" => $applyTo]);
+        return view('friend.applyTo')->with(["appliesTo" => $applyTo]);
     }
 
     public function applyFrom() {
@@ -48,7 +38,8 @@ class FriendController extends Controller
         return view('friend.applyFrom')->with(["users" => $applyFrom]);
     }
 
-    // post
+    // ----------------------------post----------------------------
+    // 申請の確認
     public function submitConfirmApply(Request $request) {
         $input = $request['user_id'];
         $user = User::find($input);
@@ -58,13 +49,58 @@ class FriendController extends Controller
         return redirect('/friend/apply/confirm');
     }
     
+    // 申請
     public function submitApply(Request $request) {
         $input = $request['id_to'];
-        $friend = new Friend();
-        $friend->id_from = Auth::id();
-        $friend->id_to = $input;
-        $friend->save();
+        if(Friend::where("id_from", Auth::id())->where("id_to", $input)->first()){
+            $friend = Friend::where("id_from", Auth::id())->where("id_to", $input)->first();
+            $friend->created_at = now();
+            $friend->save();
+        }
+        else {
+            $friend = new Friend();
+            $friend->id_from = Auth::id();
+            $friend->id_to = $input;
+            $friend->save();
+        }
         
         return redirect('/friend/index');
+    }
+    
+    // 申請取り消し
+    public function cancelApplyTo(Request $request) {
+        $input = $request['applyTo'];
+        $cancelApply = Friend::where("id_to", $input)->get();     // 自分から申請中のユーザー
+        $cancelApply->each->delete();       // $applyToをテーブルから削除
+        
+        return redirect('/friend/applyTo');
+    }
+
+    // フレンドを返す
+    private function friends() {
+        $friends_id = [];
+        $friends = [];
+        
+        // 1. 自分から誰かへ申請した人たち
+        $id_to_s = Friend::where("id_from", Auth::id())->get()->pluck('id_to');
+        //dd($id_to_s);
+        // 2. 1の人たちの中で自分に申請した人たち
+        foreach($id_to_s as $id_to) {
+            $friend_id = Friend::where("id_from", $id_to)->where("id_to", Auth::id())->first();
+            
+            if ($friend_id) {
+                $friends_id[] = $friend_id->id_from;       // $friendが存在すればid_fromを配列に追加
+            }
+        }
+
+        foreach($friends_id as $friend_id) {
+            $friend = User::where("id", $friend_id)->first();
+            
+            if ($friend) {
+                $friends[] = $friend;
+            }
+        }
+        
+        return $friends;
     }
 }

@@ -14,8 +14,8 @@
             
             @foreach($friends as $friend)
                 <li>
-                    id:{{ $friend->id }}
-                    名前:{{ $friend->name }}
+                    id:{{ $friend['id'] }}
+                    名前:{{ $friend['name'] }}
                 </li>
             @endforeach
         </body>
