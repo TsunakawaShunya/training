@@ -5,13 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Friend;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
     // ----------------------------get----------------------------
     public function showIndex() {
-        return view('friend.index');
+        $friends = $this->friends();
+        //dd($friends);
+        $posts = collect();
+        foreach($friends as $friend) {
+            $friendPosts = Post::where("user_id", $friend->id)->get();
+            $posts = $posts->merge($friendPosts);
+        }
+        
+        //dd($posts);
+        return view("friend.index")->with(["posts" => $posts]);
     }
     
     public function showList() {

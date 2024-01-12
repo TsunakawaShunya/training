@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    // 投稿画面へ
     public function postShow() {
         $latestCheck = Check::where("user_id", Auth::id())->latest("updated_at")->first();      // 最も新しいもの(投稿するcheckを1個)を取り出す
         $endChecks = Check::where("updated_at", $latestCheck->updated_at)->get();       // updated_atが同じものが投稿するcheck
@@ -27,6 +28,7 @@ class PostController extends Controller
         return view("training.post")->with(["post" => $post]);
     }
     
+    // 投稿をpostsテーブルに追加
     public function postPost(Request $request) {
         $post_id = $request['post_id'];
         $post_body = $request['post_body'];
