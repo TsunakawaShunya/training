@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('menu_id')->constrained()->onDelete('cascade');       // メニューID
             $table->foreignId('user_id')->constrained()->onDelete('cascade');       // ユーザID
-            $table->boolean('status');      // ステータス（1:トレーニング中, 0:トレーニング）
+            $table->boolean('status');      // ステータス（2:終了, 1:トレーニング中, 0:トレーニング）
             $table->timestamps();
         });
     }

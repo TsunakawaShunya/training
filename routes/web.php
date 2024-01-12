@@ -45,7 +45,7 @@ Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart']
 Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
 Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
 Route::get('/training/post', [PostController::class, 'postShow'])->name('post.show');
-Route::post('/training/post', [PostController::class, 'trainingPost'])->name('post.training');
+Route::post('/training/post/post', [PostController::class, 'postPost'])->name('post.post');
 
 // home部
 Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
