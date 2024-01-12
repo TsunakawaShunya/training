@@ -31,6 +31,16 @@
             <div class="apply-from">
                 <a href="/friend/applyFrom">自分宛のフレンド申請一覧</a>
             </div>
+            
+            <div class="post-list">
+                Posts
+                @foreach($posts as $post)
+                    <div class="post">
+                        {{ $post->user->name }}<br>
+                        {{ $post->body }}
+                    </div>
+                @endforeach
+            </div>
         </body>
     </html>
 </x-app-layout>
