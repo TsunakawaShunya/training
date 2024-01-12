@@ -24,4 +24,9 @@ class Post extends Model
     public function menu() {
         return $this->belongsToMany(Menu::class);
     }
+    
+    protected $fillable = [
+        'user_id', 
+        'body',
+    ];
 }

@@ -16,12 +16,8 @@
             @endforeach
         </body>
         
-        <div class="start-post">
-            <form action="/training/post" method="POST">
-                @csrf
-                <input type="hidden" name="endmenu" value="{{ $endChecks }}"/>
-                <input type="submit" value="投稿する">
-            </form>
+        <div class="goto-post">
+            <a href="/training/post">投稿する</a>
         </div>
         <div class="footer">
             <a href="/training/index">戻る</a>
