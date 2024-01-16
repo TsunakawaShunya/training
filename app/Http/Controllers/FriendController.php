@@ -15,26 +15,15 @@ class FriendController extends Controller
     // ----------------------------get----------------------------
     public function showIndex() {
         $friends = $this->friends();
-        //dd($friends);
-        $posts = collect();
-        $likes = collect();
-        
-        foreach($friends as $friend) {
-            $friendPosts = Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get();
-            //$posts = $posts->merge($friendPosts)->unique('id');
-            $posts = $posts->merge($friendPosts);
 
-            foreach ($friendPosts as $friendPost) {
-                // 各投稿に対して Like を検索
-                $like = Like::where("post_id", $friendPost->id)->get();
-                $likes = $likes->merge($like);
-            }
+        foreach($friends as $friend) {
+            $posts = Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get();
         }
         // updated_at で降順にソート
         $posts = $posts->sortByDesc('updated_at');
-        return view("friend.index")->with(["posts" => $posts, "likes" => $likes]);
+        return view("friend.index")->with(["posts" => $posts]);
     }
-    
+
     public function showList() {
         $friends = $this->friends();
         return view('friend.list')->with(["friends" => $friends]);
