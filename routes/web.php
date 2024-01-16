@@ -10,6 +10,7 @@ use App\Http\Controllers\WeightController;
 use App\Http\Controllers\CalorieController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])
 Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
 Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
 Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
-Route::get('/training/post', [PostController::class, 'postShow'])->name('post.show');
+Route::get('/training/post', [PostController::class, 'trainingPostShow'])->name('training.post.show');
 Route::post('/training/post/post', [PostController::class, 'postPost'])->name('post.post');
 
 // home部
@@ -71,5 +72,7 @@ Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])
 Route::get('/friend/applyTo', [FriendController::class, 'applyTo'])->name('friend.applyTo');
 Route::patch('/friend/applyTo/cancel', [FriendController::class, 'cancelApplyTo'])->name('friend.cancelApplyTo');
 Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
+Route::get('/friend/post', [PostController::class, 'postShow'])->name('friend.post.show');
+Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike');
 
 require __DIR__.'/auth.php';

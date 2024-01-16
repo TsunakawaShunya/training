@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Friend;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Like;
+
 use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
@@ -15,13 +17,22 @@ class FriendController extends Controller
         $friends = $this->friends();
         //dd($friends);
         $posts = collect();
-        foreach($friends as $friend) {
-            $friendPosts = Post::where("user_id", $friend->id)->get();
-            $posts = $posts->merge($friendPosts);
-        }
+        $likes = collect();
         
-        //dd($posts);
-        return view("friend.index")->with(["posts" => $posts]);
+        foreach($friends as $friend) {
+            $friendPosts = Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get();
+            //$posts = $posts->merge($friendPosts)->unique('id');
+            $posts = $posts->merge($friendPosts);
+
+            foreach ($friendPosts as $friendPost) {
+                // 各投稿に対して Like を検索
+                $like = Like::where("post_id", $friendPost->id)->get();
+                $likes = $likes->merge($like);
+            }
+        }
+        // updated_at で降順にソート
+        $posts = $posts->sortByDesc('updated_at');
+        return view("friend.index")->with(["posts" => $posts, "likes" => $likes]);
     }
     
     public function showList() {

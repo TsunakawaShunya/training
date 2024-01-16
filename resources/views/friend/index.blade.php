@@ -33,13 +33,22 @@
             </div>
             
             <div class="post-list">
-                Posts
+               <h1>ポスト一覧</h1>
                 @foreach($posts as $post)
                     <div class="post">
                         {{ $post->user->name }}<br>
                         {{ $post->body }}
                     </div>
+                    
+                    <form action="/friend/post/like" method="POST">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <button type="submit">いいね</button>
+                        {{ $likes->where("post_id", $post->id)->count() }}
+                    </form>
+
                 @endforeach
+                <a href="/friend/post">投稿</a>
             </div>
         </body>
     </html>
