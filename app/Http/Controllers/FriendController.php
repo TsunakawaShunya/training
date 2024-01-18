@@ -20,7 +20,7 @@ class FriendController extends Controller
             $posts = Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get();
         }
         // updated_at で降順にソート
-        if($posts) {
+        if(isset($posts)) {
             $posts = $posts->sortByDesc('updated_at');
         }
         return view("friend.index")->with(["posts" => $posts]);
