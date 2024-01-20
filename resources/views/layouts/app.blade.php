@@ -16,19 +16,19 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-gray-400 text-gray-800 font-bold font-mono text-center text-3xl">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endif
 
+            @include('layouts.navigation')
+
             <!-- Page Content -->
-            <main>
+            <main class="bg-blue-300 max-h-full">
                 {{ $slot }}
             </main>
         </div>

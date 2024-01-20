@@ -1,15 +1,44 @@
 <x-app-layout>
-  <x-slot name="title">ホーム</x-slot>
-  <div class='greeting'>
-    <h1>ホーム</h1>
+  <x-slot name="title">とれログ ホーム</x-slot>
+  <x-slot name="header">ホーム</x-slot>
+
+  <div class="text-gray-800 font-bold font-mono text-center text-3xl p-4">
       <h1>こんにちは！{{ Auth::user()->name }} さん！</h1>
   </div>
   
-  
-  <div style="width: 40%;margin: auto">
-  <div id='calendar'></div>
+  <!-- カレンダー -->
+  <div class="border border-4 border-gray-800 p-1 bg-gray-200" id='calendar' style="width: 80%; margin: auto"></div>
 
-  <!-- トレーニングログ -->
+  <!-- 体重 -->
+  <div class="border border-4 border-gray-800 bg-gray-200 w-6/10 m-3 p-1">
+    <div class="add-weight-log">
+      <form action="/home/weight" method="POST">
+        @method('patch')
+        @csrf
+        <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
+        <input type="text" name=weight[weight] placeholder="今日の体重 kg"/>
+        <input type="submit" value="追加">
+      </form>
+    </div>
+    <canvas id="weight_chart" style="width: 80%; margin: auto"></canvas>
+  </div>
+
+  <!-- カロリー -->
+  <div class="border border-4 border-gray-800 bg-gray-200 w-6/10 m-3 p-1">
+    <div class="add-calorie-log">
+      <form action="/home/calorie" method="POST">
+        @method('patch')
+        @csrf
+        <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 g"/>
+        <input type="text" name=calorie[protain] placeholder="たんぱく質 g"/>
+        <input type="text" name=calorie[fat] placeholder="脂質 g"/>
+        <input type="submit" value="追加">
+      </form>
+    </div>
+    
+    <canvas class="flex justify-center" id="calorie_chart" style="width: 80%; margin: auto"></canvas>
+  </div>
+
   <!-- カレンダー -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script>
@@ -23,21 +52,8 @@
       });
   </script>
   
-   <!-- 体重 -->
-  <div class="add-weight-log">
-    <form action="/home/weight" method="POST">
-      @method('patch')
-      @csrf
-      <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
-      <input type="text" name=weight[weight] placeholder="今日の体重 kg"/>
-      <input type="submit" value="追加">
-    </form>
-  </div>
-  
-  <!-- 体重グラフ -->
-  <canvas id="weight_chart" width="400"></canvas>
+  <!-- 体重 -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-  
   <script>
     const ctx = document.getElementById('weight_chart');
     const chart = new Chart(ctx, {
@@ -74,20 +90,7 @@
     });
   </script>
   
-  <!-- カロリー -->
-  <div class="add-calorie-log">
-    <form action="/home/calorie" method="POST">
-      @method('patch')
-      @csrf
-      <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 g"/>
-      <input type="text" name=calorie[protain] placeholder="たんぱく質 g"/>
-      <input type="text" name=calorie[fat] placeholder="脂質 g"/>
-      <input type="submit" value="追加">
-    </form>
-  </div>
-
-  <!-- カロリーグラフ -->
-  <canvas id="calorie_chart" width="400"></canvas>
+  <!-- 食事 -->
   <script>
     const ctxCalorie = document.getElementById("calorie_chart").getContext('2d');
     const myChartCalorie = new Chart(ctxCalorie, {

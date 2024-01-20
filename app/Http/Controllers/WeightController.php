@@ -21,7 +21,7 @@ class WeightController extends Controller
         $input = $request->input('weight');
         $latestWeight = Weight::where('user_id', Auth::id())->latest('id')->first();
         
-        if($latestWeight->created_at->toDateString() == now()->toDateString()) {
+        if($latestWeight && $latestWeight->created_at->toDateString() == now()->toDateString()) {
             $weightLog = $latestWeight;
             $weightLog->fill($input)->save();
         }
