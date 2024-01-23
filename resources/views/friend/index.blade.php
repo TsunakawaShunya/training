@@ -38,7 +38,6 @@
                 <button type="submit">いいね</button>
                 {{ $post->likes->count() }}
             </form>
-
         @endforeach
         <a href="/friend/post">投稿</a>
     </div>
