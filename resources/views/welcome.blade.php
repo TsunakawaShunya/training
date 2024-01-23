@@ -9,14 +9,14 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
+    <body class="bg-blue-300 max-h-full">
       <header class="bg-gray-400 text-gray-800 font-bold font-mono text-center text-3xl">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           とれログ
         </div>
       </header>
 
-      <main class="bg-blue-300 max-h-full">
+      <main>
         <div class="flex justify-center text-gray-800 text-center text-base">
           <ul>
             <li class="p-2"><a href="/login">ログイン</a></li>
