@@ -18,8 +18,9 @@ class FriendController extends Controller
         $posts = array();
         
         foreach($friends as $friend) {
-            ayyay_push($posts, Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get());
+            array_push($posts, Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get());
         }
+        //dd($posts);
         // updated_at で降順にソート
         return view("friend.index")->with(["posts" => $posts]);
     }

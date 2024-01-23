@@ -28,7 +28,7 @@
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            <main class="bg-blue-300 max-h-full">
+            <main class="bg-blue-300 min-h-full">
                 {{ $slot }}
             </main>
         </div>

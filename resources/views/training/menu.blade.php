@@ -1,37 +1,42 @@
 <x-app-layout>
     <x-slot name="title">メニュー</x-slot>
+    <x-slot name="header">トレーニング</x-slot>
 
-    <div class="menus">
-        <h1>{{ $part->name }}</h1>
-        <form action="/training/menu/{{ $part->id }}/start" method="POST">
-            @foreach($menus as $menu)
-                @if($menu->part_id == $part->id)
-                    <ul>
-                        @csrf
+    <div class="text-gray-800 font-bold text-5xl text-left">{{ $part->name }}</div>
+
+    <form action="/training/menu/{{ $part->id }}/start" method="POST">
+        @foreach($menus as $menu)
+            @if($menu->part_id == $part->id)
+                <ul>
+                    @csrf
+                    <div class="flex justify-center">
                         <input type="checkbox" name="menu[id][]" value="{{ $menu->id }}"> 
                         {{ $menu->name }} : {{ $menu->weight }} kg
-                    </ul>
-                @endif
-            @endforeach
-            <input type="submit" value="開始">
+                    </div>
+                </ul>
+            @endif
+        @endforeach
+        <div class="flex justify-center mt-2">
+            <input class="border-4 border-solid border-red-500 bg-red-200 p-2 text-center text-5xl" type="submit" value="開始">
+        </div>
+    </form>
+    
+    <div class="m-5 p-3 m-auto border-4 border-solid border-gray-500 w-1/2">
+        <form action="/training/index" method="POST">
+            @csrf
+            <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>
+            <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
+        
+            <div>
+                <div class="text-gray-800 font-bold text-3xl text-left">メニュー名</div>
+                <input class="flex justify-end" type="text" name="menu[name]" placeholder="メニュー名"/>
+                <div class="text-gray-800 font-bold text-3xl text-left">重量</div>
+                <input class="flex justify-end" type="text" name="menu[weight]" placeholder="重量 kg"/>
+            </div>
+            
+            <div class="flex justify-center mt-2">
+                <input class="border-4 border-solid border-orange-500 bg-orange-200 p-2 m-3 text-center text-5xl" type="submit" value="追加">
+            </div>
         </form>
     </div>
-    <form action="/training/index" method="POST">
-        @csrf
-        <div class="part">
-            <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>
-        </div>
-        <div class="user">
-            <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
-        </div>
-        <div class="name">
-            <h2>メニュー名</h2>
-            <input type="text" name="menu[name]" placeholder="メニュー名"/>
-        </div>
-        <div class="weight">
-            <h2>重量</h2>
-            <input type="text" name="menu[weight]" placeholder="重量 kg"/>
-        </div>
-        <input type="submit" value="追加">
-    </form>
 </x-app-layout>
