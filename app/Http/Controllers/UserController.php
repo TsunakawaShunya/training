@@ -44,7 +44,7 @@ class UserController extends Controller
                 //配列で結果をいれる
                 foreach ($response as $item){
                     //画像サイズを変えたかったのでURLを整形
-                    $str = str_replace("_ex=128x128", "_ex=175x175", $item['mediumImageUrls'][0]['imageUrl']);
+                    $str = str_replace("_ex=128x128", "_ex=240x240", $item['mediumImageUrls'][0]['imageUrl']);
                     $items[] = array(
                         'itemName' => $item['itemName'],
                         'itemPrice' => $item['itemPrice'],
@@ -52,8 +52,6 @@ class UserController extends Controller
                         'mediumImageUrls' => $str,
                     );
                 }
-            } else {
-                echo 'Error:'.$response->getMessage();
             }
         }
         return view("shopping.index")->with(['items' => $items]);
