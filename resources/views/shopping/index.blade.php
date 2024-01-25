@@ -1,51 +1,64 @@
 <x-app-layout>
     <x-slot name="title">ショッピング</x-slot>
-    <div class='greeting'>
-        <h1>ショッピング</h1>
-        <h1>こんにちは！{{ Auth::user()->name }} さん！</h1>
+    <x-slot name="header">ショッピング</x-slot>
+    <div class="p-3">
+        <img class="ml-4" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rakuten.co.jp%2F&psig=AOvVaw3eTVpBfgYNx1gMjnwW70nb&ust=1706250489205000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCY7b_z94MDFQAAAAAdAAAAABAD" alt="楽天市場ロゴ">
+      <div class="m-2 text-lg flex justify-end">
+        トレーニングに関する楽天の商品ページを表示しています．</br>
+        気になる商品のリンクをクリックすると楽天のページへ遷移します．
+      </div>
     </div>
     
-    <div class='rakuten'>
+    <div id='rakuten'>
         <form action="/shopping/index" method="POST">
             @csrf
-            <input type="text" name="keyword[]" placeholder="検索"/>
-            <ul>
+            <div class="flex justify-center">
+                <input class="border-3 border-solid border-gray-800 w-4/5" type="text" name="keyword[]" placeholder="検索"/>
+            </div>
+            <ul class="w-1/6 ml-auto text-lg">
+              <li>
                 <input type="checkbox" name="keyword[]" value="プロテイン"> 
                 プロテイン
-            </ul>
-            <ul>
+              </li>
+              <li>
                 <input type="checkbox" name="keyword[]" value="サプリメント"> 
                 サプリメント
-            </ul>
-            <ul>
+              </li>
+              <li>
                 <input type="checkbox" name="keyword[]" value="フィットネスグッズ"> 
                 フィットネスグッズ
-            </ul>
-            <ul>
+              </li>
+              <li>
                 <input type="checkbox" name="keyword[]" value="スポーツウェア"> 
                 スポーツウェア
+              </li>
             </ul>
-            <input type="submit" value="検索">
+            <div class="flex justify-center">
+              <input class="border-4 border-solid border-blue-600 bg-white p-2 font-mono text-center text-5xl" type="submit" value="検索">
+            </div>
         </form>
-        @if($items == null)
-            <h1></h1>
-        @else
+        
+        <div class="my-3 text-center">
             @foreach($items as $item)
-                <li class="item">
-                    <ul>
-                        <img src="{{ $item['mediumImageUrls'] }}" alt="{{ $item['itemName'] }}の画像">
-                    </ul>
-                    <ul>
-                        <a href="{{ $item['itemUrl'] }}" target="_blank">
-                            {{ $item['itemName'] }}
-                        </a>
-                    </ul>
-                    <ul>
-                        価格：{{ $item['itemPrice'] }}円
-                    </ul>
-                </li>
+                <ul class="inline-flex">
+                    <li>
+                        <ul class="bg-white m-3 p-2">
+                            <li class="text-xl">
+                                {{ $item['itemPrice'] }} 円
+                            </li>
+                            <li>
+                                <a class="mx-auto my-2" href="{{ $item['itemUrl'] }}" target="_blank">
+                                    <img class="mx-auto" src="{{ $item['mediumImageUrls'] }}" alt="{{ $item['itemName'] }}の画像">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="mx-auto my-2" href="{{ $item['itemUrl'] }}" target="_blank">{{ \Illuminate\Support\Str::limit($item['itemName'], 30) }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             @endforeach
-        @endif
+        </div>
     </div>
 </x-app-layout>
 

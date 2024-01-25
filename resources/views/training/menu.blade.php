@@ -21,7 +21,7 @@
         </div>
     </form>
     
-    <div class="m-5 p-3 m-auto border-4 border-solid border-gray-500 w-1/2">
+    <div class="my-5 p-3 m-auto border-4 border-solid border-gray-500 w-1/2">
         <form action="/training/index" method="POST">
             @csrf
             <input type="hidden" name="menu[part_id]" value="{{ $part->id }}"/>

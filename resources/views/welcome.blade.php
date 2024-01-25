@@ -17,7 +17,7 @@
       </header>
 
       <main>
-        <div class="flex justify-center text-gray-800 text-center text-base">
+        <div class="text-gray-800 text-center text-base">
           <ul>
             <li class="p-2"><a href="/login">ログイン</a></li>
             <li class="p-2"><a href="/register">新規登録</a></li>

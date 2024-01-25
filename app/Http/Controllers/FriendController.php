@@ -7,7 +7,7 @@ use App\Models\Friend;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Like;
-
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
@@ -24,6 +24,9 @@ class FriendController extends Controller
             }
         }
         // updated_at で降順にソート
+        usort($posts, function($a, $b) {
+            return strtotime($b['updated_at']) - strtotime($a['updated_at']);
+        });        
         return view("friend.index")->with(["posts" => $posts]);
     }
 
