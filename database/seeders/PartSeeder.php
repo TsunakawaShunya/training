@@ -16,12 +16,6 @@ class PartSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('parts')->insert([
-            ['name' => '胸'],
-            ['name' => '肩'],
-            ['name' => '背中'],
-            ['name' => '足'],
-            ['name' => '腕'],
-            ]);
+        Part::factory()->count(7)->create();
     }
 }

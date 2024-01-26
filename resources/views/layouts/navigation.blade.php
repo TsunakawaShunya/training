@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('weight.show')" :active="request()->routeIs('weight.show')">
                         {{ __('ホーム') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('menu.show')" :active="request()->routeIs('menu.show')">
+                    <x-nav-link :href="route('training-index.show')" :active="request()->routeIs('menu.show')">
                         {{ __('トレーニング') }}
                     </x-nav-link>
                     <x-nav-link :href="route('map.show')" :active="request()->routeIs('map.sho')">

@@ -34,9 +34,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // training部
-Route::get('/training/index', [MenuController::class, 'show'])->name('menu.show');
-Route::get('/training/menu/{part}', [MenuController::class, 'add'])->name('menu.add');
-Route::post('/training/index', [MenuController::class, 'store'])->name('menu.store');
+Route::get('/training/index', [MenuController::class, 'showIndex'])->name('training-index.show');
+Route::get('/training/menu/{part}', [MenuController::class, 'showMenu'])->name('menu.show');
+Route::post('/training/add', [MenuController::class, 'storeMenu'])->name('menu.store');
 Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])->name('training-start.show');
 Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
 Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');

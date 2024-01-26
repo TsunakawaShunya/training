@@ -6,37 +6,40 @@
       <h1>こんにちは！{{ Auth::user()->name }} さん！</h1>
   </div>
   
-  <!-- カレンダー -->
-  <div class="border border-4 border-gray-800 p-1 bg-gray-200" id='calendar' style="width: 80%; margin: auto"></div>
-
-  <!-- 体重 -->
-  <div class="border border-4 border-gray-800 bg-gray-200 w-6/10 m-3 p-1">
-    <div class="add-weight-log">
-      <form action="/home/weight" method="POST">
-        @method('patch')
-        @csrf
-        <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
-        <input type="text" name=weight[weight] placeholder="今日の体重 kg"/>
-        <input type="submit" value="追加">
-      </form>
+  <div class="flex">
+    <!-- 左側 -->
+    <div class="w-1/2 p-4">
+      <!-- カレンダー -->
+      <div class="border border-4 border-gray-800 p-1 bg-gray-200 w-5/6 h-5/6 mx-auto" id='calendar'></div>
     </div>
-    <canvas id="weight_chart" style="width: 80%; margin: auto"></canvas>
-  </div>
-
-  <!-- カロリー -->
-  <div class="border border-4 border-gray-800 bg-gray-200 w-6/10 m-3 p-1">
-    <div class="add-calorie-log">
-      <form action="/home/calorie" method="POST">
-        @method('patch')
-        @csrf
-        <input type="text" name=calorie[carbohydrate] placeholder="炭水化物 g"/>
-        <input type="text" name=calorie[protain] placeholder="たんぱく質 g"/>
-        <input type="text" name=calorie[fat] placeholder="脂質 g"/>
-        <input type="submit" value="追加">
-      </form>
-    </div>
+  
+    <!-- 右側　-->
+    <div class="w-1/2 p-4">
+      <!-- 体重 -->
+      <div class="border border-4 border-gray-800 bg-gray-200 p-2">
+        <form action="/home/weight" method="POST">
+          @method('patch')
+          @csrf
+          <input type="hidden" name="menu[user_id]" value="{{ Auth::id() }}"/>
+          <input type="text" name=weight[weight] placeholder="今日の体重 kg"/>
+          <input type="submit" value="追加">
+        </form>
+        <canvas id="weight_chart" style="width: 80%; margin: auto"></canvas>
+      </div>
     
-    <canvas class="flex justify-center" id="calorie_chart" style="width: 80%; margin: auto"></canvas>
+      <!-- カロリー -->
+      <div class="border border-4 border-gray-800 bg-gray-200 my-2 p-2">
+        <form action="/home/calorie" method="POST">
+          @method('patch')
+          @csrf
+          <input class="w-1/4" type="text" name=calorie[carbohydrate] placeholder="炭水化物 g"/>
+          <input class="w-1/4" type="text" name=calorie[protain] placeholder="たんぱく質 g"/>
+          <input class="w-1/4" type="text" name=calorie[fat] placeholder="脂質 g"/>
+          <input type="submit" value="追加">
+        </form>
+        <canvas class="mx-auto" id="calorie_chart" style="width: 100%;"></canvas>
+      </div>
+    </div>
   </div>
 
   <!-- カレンダー -->

@@ -9,21 +9,25 @@ use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
-    public function show(Menu $menu, Part $part) {
-        return view('training.index')->with(['parts' => $part->get(), 'menus' => $menu::where('user_id', Auth::id())->get()]);
+    public function showIndex() {
+        $parts = Part::where('user_id', Auth::id())->get();
+        return view('training.index')->with(['parts' => $parts]);
     }
     
-    public function add(Part $part) {
-        $menu = Menu::where('user_id', Auth::id())->where('part_id', $part->id)->get();
-        return view('training.menu')->with(['menus' => $menu, 'part' => $part]);
+    public function showMenu(Part $part) {
+        $parts = Part::where('user_id', Auth::id())->get();
+        $menu = Menu::where('part_id', $part->id)->get();
+
+        return view('training.menu')->with(['menus' => $menu, 'parts' => $parts, 'selectedPart' => $part]);
     }
     
-    public function store(Request $request, Menu $menu){
+    public function storeMenu(Request $request){
         $input = $request['menu'];
-        
+
         // 追加
-        $menu->fill($input)->save();
-        
-        return redirect('/training/index');
+        $menus = new Menu();
+        $menus->fill($input)->save();
+
+        return redirect('/training/menu/' . $input["part_id"]);
     }
 }

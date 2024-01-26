@@ -11,6 +11,10 @@
             </div>
 
             <div class='mb-2 text-lg font-bold'>
+                <a href="/friend/index">ポスト一覧</a>
+            </div>
+
+            <div class='mb-2 text-lg font-bold'>
                 <a href="/friend/list">フレンドリスト</a>
             </div>
 
@@ -32,10 +36,10 @@
             <div class="my-4">
                 <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">フレンド申請</h1>
             </div>
-            <form class="border-4 border-solid border-gray-800 bg-white w-1/2 mx-auto px-4 py-2" action="/friend/apply/confirm" method="POST">
+            <form class="bg-white w-1/2 mx-auto px-6 py-4" action="/friend/apply/confirm" method="POST">
                 @csrf
                 <div class="flex justify-center">
-                    <input class="w-3/5 mx-auto mb-2" type="text" name="user_id" placeholder="相手のID"/>
+                    <input class="border-4 border-solid border-gray-800 w-3/5 mx-auto mb-2" type="text" name="user_id" placeholder="相手のID"/>
                 </div>
               <div class="flex justify-center">
                 <input class="border-4 border-solid border-blue-600 bg-blue-100 p-2 font-mono text-center text-xl font-bold" type="submit" value="検索">

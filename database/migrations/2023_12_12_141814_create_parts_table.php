@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');       // ユーザID
             $table->string('name', 50);     // 部位
         });
     }

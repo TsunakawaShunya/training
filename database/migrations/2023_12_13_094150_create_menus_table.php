@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);     // メニュー名
             $table->double('weight')->unsigned();       // 重さ kg
-            $table->foreignId('part_id')->constrained()->onDelete('cascade');       // ユーザID
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');       // ユーザID
+            $table->foreignId('part_id')->constrained()->onDelete('cascade');       // 部位ID
             $table->timestamps();
         });
     }
