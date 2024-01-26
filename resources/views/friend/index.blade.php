@@ -37,7 +37,7 @@
                 <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">ポスト一覧</h1>
                 <a href="/friend/post" class="bg-green-700 text-lg text-white px-4 py-2">投稿</a>
             </div>
-            @foreach($posts as $post)
+            @foreach($postsList as $post)
                 <div class="bg-white p-2 mb-2">
                     <h1 class="text-lg font-bold">{{ $post->user->name }}</h1>
                     <div class="text-sm">{{ $post->updated_at }}</div>

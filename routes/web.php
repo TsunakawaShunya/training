@@ -35,8 +35,9 @@ Route::middleware('auth')->group(function () {
 
 // training部
 Route::get('/training/index', [MenuController::class, 'showIndex'])->name('training-index.show');
+Route::post('/training/part/add', [MenuController::class, 'storePart'])->name('training-part.post');
 Route::get('/training/menu/{part}', [MenuController::class, 'showMenu'])->name('menu.show');
-Route::post('/training/add', [MenuController::class, 'storeMenu'])->name('menu.store');
+Route::post('/training/menu/add', [MenuController::class, 'storeMenu'])->name('menu.store');
 Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])->name('training-start.show');
 Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
 Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
@@ -68,7 +69,7 @@ Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])
 Route::get('/friend/applyTo', [FriendController::class, 'applyTo'])->name('friend.applyTo');
 Route::patch('/friend/applyTo/cancel', [FriendController::class, 'cancelApplyTo'])->name('friend.cancelApplyTo');
 Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
-Route::get('/friend/post', [PostController::class, 'postShow'])->name('friend.post.show');
+Route::get('/friend/post', [PostController::class, 'normalPostShow'])->name('friend.post.show');
 Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike');
 
 require __DIR__.'/auth.php';
