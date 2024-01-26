@@ -42,9 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-
-    public function menus() {
-        return $this->hasMany(Menu::class);
+    public function parts() {
+        return $this->hasMany(Part::class);
     }
 
     public function checks() {

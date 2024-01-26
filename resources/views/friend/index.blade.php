@@ -11,6 +11,10 @@
             </div>
 
             <div class='mb-2 text-lg font-bold'>
+                <a href="/friend/index">ポスト一覧</a>
+            </div>
+
+            <div class='mb-2 text-lg font-bold'>
                 <a href="/friend/list">フレンドリスト</a>
             </div>
 
