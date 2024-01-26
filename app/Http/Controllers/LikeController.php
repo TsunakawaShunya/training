@@ -13,11 +13,16 @@ class LikeController extends Controller
         $post_id = $request->input('post_id');
         $user_id = Auth::id();
         
-        $like = new Like();
-        $like->post_id = $post_id;
-        $like->user_id = $user_id;
-        $like->save();
-
+        $liked = Like::where("user_id", $user_id)->where("post_id", $post_id)->first();
+        if($liked) {
+            $liked->delete();
+        } else {
+            $like = new Like();
+            $like->post_id = $post_id;
+            $like->user_id = $user_id;
+            $like->save();
+        }
+        
         return redirect('/friend/index');
     }
 

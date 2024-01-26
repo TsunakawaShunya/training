@@ -17,17 +17,25 @@ class FriendController extends Controller
         $friends = $this->friends();
         $postsList = array();
         
-        foreach($friends as $friend) {
-            $posts = Post::where("user_id", $friend->id)->orWhere('user_id', Auth::id())->get();
+        if($friends != null) {
+            foreach($friends as $friend) {
+                $posts = Post::where("user_id", Auth::id())->orWhere('user_id', $friend->id)->get();
+                foreach($posts as $post) {
+                   array_push($postsList, $post);
+                }
+            }
+        } else {
+            $posts = Post::where("user_id", Auth::id())->get();
             foreach($posts as $post) {
                array_push($postsList, $post);
             }
         }
-
+        
         // updated_at で降順にソート
         usort($postsList, function($a, $b) {
             return strtotime($b['updated_at']) - strtotime($a['updated_at']);
-        });        
+        });
+        
         return view("friend.index")->with(["postsList" => $postsList]);
     }
 

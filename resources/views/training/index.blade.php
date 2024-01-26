@@ -2,7 +2,7 @@
     <x-slot name="title">トレーニング</x-slot>
     <x-slot name="header">トレーニング</x-slot>
 
-    <div class="flex">
+    <div class="flex h-screen">
         <!-- 左側 -->
         <div class="w-1/4 p-4 bg-gray-400">
             <div class="flex justify-end">
@@ -19,9 +19,9 @@
         </div>
 
         <!-- 右側 -->
-        <div class="w-3/4 p-4">
+        <div class="w-3/4 p-4 overflow-y-auto">
             <div class="my-4">
-                <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">トレーニングトップページ</h1>
+                <h1 class="text-gray-800 font-bold font-mono text-center text-3xl my-2">トレーニングトップページ</h1>
                 <!-- カレンダー -->
                 <div class="border border-4 border-gray-800 p-1 bg-gray-200 mx-auto" id='calendar'></div>
             </div>
@@ -60,7 +60,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        window.location.reload();       // 再読み込み
+                        //window.location.reload();       // 再読み込み
                     } else {
                         console.error('Error:', xhr.statusText);
                     }
