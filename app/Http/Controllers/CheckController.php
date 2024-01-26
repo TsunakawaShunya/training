@@ -16,7 +16,7 @@ class CheckController extends Controller
         $userId = Auth::id();
         
         // statusが1のものを0にする
-        Check::where("user_id", Auth::id())->where("status", 1)->update(['status' => 0]);
+        Check::where("user_id", Auth::id())->where("status", 1)->orWhere("status", 2)->update(['status' => 0]);
 
         foreach ($inputMenus['id'] as $menuId) {
             $check = new Check();
@@ -26,7 +26,7 @@ class CheckController extends Controller
             $check->save();
         }
 
-        $partId = Menu::find($check->menu_id)->part_id;
+        $partId = Menu::find($inputMenus['id'][0])->part_id;
         return redirect('/training/menu/' . $partId . '/start');
     }
 
