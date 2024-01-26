@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Part;
 use App\Models\Check;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,10 @@ class CheckController extends Controller
     }
 
     public function showStart() {
+        $parts = Part::where("user_id", Auth::id())->get();
         $checks = Check::where("user_id", Auth::id())->where("status", 1)->get();
-        return view('training.start-training')->with(['checks' => $checks]);
+        
+        return view('training.start-training')->with(['parts' => $parts, 'checks' => $checks]);
     }
     
     // トレーニング終了post部
@@ -53,8 +56,10 @@ class CheckController extends Controller
     
     // トレーニング終了get部
     public function showEnd() {
+        $parts = Part::where("user_id", Auth::id())->get();
         $endChecks = Check::where("user_id", Auth::id())->where("updated_at", now())->get();
-        return view("training.end-training")->with(['endChecks' => $endChecks]);
+        
+        return view("training.end-training")->with(['endChecks' => $endChecks, 'parts' => $parts]);
     }
     
     // トレーニングをカレンダーに記入
