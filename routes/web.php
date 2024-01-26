@@ -33,43 +33,53 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// training部
-Route::get('/training/index', [MenuController::class, 'showIndex'])->name('training-index.show');
-Route::post('/training/part/add', [MenuController::class, 'storePart'])->name('training-part.post');
-Route::get('/training/menu/{part}', [MenuController::class, 'showMenu'])->name('menu.show');
-Route::post('/training/menu/add', [MenuController::class, 'storeMenu'])->name('menu.store');
-Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])->name('training-start.show');
-Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
-Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
-Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
-Route::get('/training/post', [PostController::class, 'trainingPostShow'])->name('training.post.show');
-Route::post('/training/post/post', [PostController::class, 'postPost'])->name('post.post');
+Route::middleware('auth')->group(function () {
+    Route::get('/training/index', [MenuController::class, 'showIndex'])->name('training-index.show');
+    Route::post('/training/part/add', [MenuController::class, 'storePart'])->name('training-part.post');
+    Route::get('/training/menu/{part}', [MenuController::class, 'showMenu'])->name('menu.show');
+    Route::post('/training/menu/add', [MenuController::class, 'storeMenu'])->name('menu.store');
+});
 
-// home部
-Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
-Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show');
-Route::patch('/home/weight', [WeightController::class, 'add'])->name('weight.add');
-Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add');
+Route::middleware('auth')->group(function () {
+    Route::get('/training/menu/{part}/start', [CheckController::class, 'showStart'])->name('training-start.show');
+    Route::post('/training/menu/{part}/start', [CheckController::class, 'postStart'])->name('training-start.post');
+    Route::get('/training/menu/{part}/end', [CheckController::class, 'showEnd'])->name('training-end.show');
+    Route::post('/training/menu/{part}/end', [CheckController::class, 'postEnd'])->name('training-end.post');
+    Route::get('/trainingLog', [CheckController::class, 'recordEndTraining'])->name('home.record-endTraining');
+});
 
-// map部
-Route::get('/map/index', [UserController::class, 'showMap'])->name('map.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/training/post', [PostController::class, 'trainingPostShow'])->name('training.post.show');
+    Route::post('/training/post/post', [PostController::class, 'postPost'])->name('post.post');
+    Route::get('/friend/post', [PostController::class, 'normalPostShow'])->name('friend.post.show');
+});
 
-// shopping部
-Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
-Route::get('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/home/index', [WeightController::class, 'show'])->name('weight.show');
+    Route::patch('/home/weight', [WeightController::class, 'add'])->name('weight.add');
+});
 
-// friend部
-Route::get('/friend/index', [FriendController::class, 'showIndex'])->name('friend.index');
-Route::get('/friend/list', [FriendController::class, 'showList'])->name('friend.list');
-Route::get('/friend/apply', [FriendController::class, 'showApply'])->name('friend.apply');
-Route::post('/friend/apply/confirm', [FriendController::class, 'submitConfirmApply'])->name('friend.submitConfirmApply');
-Route::get('/friend/apply/confirm', [FriendController::class, 'confirmApply'])->name('friend.confirmApply');
-Route::post('/friend/apply/complete', [FriendController::class, 'submitApply'])->name('friend.submitApply');
-Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])->name('friend.completeApply');
-Route::get('/friend/applyTo', [FriendController::class, 'applyTo'])->name('friend.applyTo');
-Route::patch('/friend/applyTo/cancel', [FriendController::class, 'cancelApplyTo'])->name('friend.cancelApplyTo');
-Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
-Route::get('/friend/post', [PostController::class, 'normalPostShow'])->name('friend.post.show');
-Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike');
+Route::middleware('auth')->group(function () {
+    Route::get('/map/index', [UserController::class, 'showMap'])->name('map.show');
+    Route::post('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+    Route::get('/shopping/index', [UserController::class, 'shopping'])->name('shopping.index');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/friend/index', [FriendController::class, 'showIndex'])->name('friend.index');
+    Route::get('/friend/list', [FriendController::class, 'showList'])->name('friend.list');
+    Route::get('/friend/apply', [FriendController::class, 'showApply'])->name('friend.apply');
+    Route::post('/friend/apply/confirm', [FriendController::class, 'submitConfirmApply'])->name('friend.submitConfirmApply');
+    Route::get('/friend/apply/confirm', [FriendController::class, 'confirmApply'])->name('friend.confirmApply');
+    Route::post('/friend/apply/complete', [FriendController::class, 'submitApply'])->name('friend.submitApply');
+    Route::get('/friend/apply/complete', [FriendController::class, 'completeApply'])->name('friend.completeApply');
+    Route::get('/friend/applyTo', [FriendController::class, 'applyTo'])->name('friend.applyTo');
+    Route::patch('/friend/applyTo/cancel', [FriendController::class, 'cancelApplyTo'])->name('friend.cancelApplyTo');
+    Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
+});
+
+Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add')->middleware('auth');;
+
+Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike')->middleware('auth');;
 
 require __DIR__.'/auth.php';

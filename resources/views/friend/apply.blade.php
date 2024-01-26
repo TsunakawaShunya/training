@@ -2,7 +2,7 @@
     <x-slot name="title">フレンド申請</x-slot>
     <x-slot name="header">フレンド</x-slot>
     
-    <div class="flex">
+    <div class="flex h-screen">
         <!-- 左側のメニュー -->
         <div class="w-1/4 p-4 bg-gray-400">
             <div class="mb-4  text-lg font-bold">
@@ -32,7 +32,7 @@
         </div>
 
         <!-- 右側 -->
-        <div class="w-3/4 p-4">
+        <div class="w-3/4 p-4 overflow-y-auto">
             <div class="my-4">
                 <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">フレンド申請</h1>
             </div>

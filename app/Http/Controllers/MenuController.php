@@ -33,12 +33,12 @@ class MenuController extends Controller
     
     public function storePart(Request $request){
         $input = $request['part'];
-        dd($input);
         // 追加
-        $parts = new Part();
-        $parts->fill($input)->save();
-
-        return redirect('/training/menu/' . $input["id"]);
+        $part = new Part();
+        $part->fill($input)->save();
+        $partId = $part->id;
+        
+        return redirect('/training/index');
     }
 
 }
