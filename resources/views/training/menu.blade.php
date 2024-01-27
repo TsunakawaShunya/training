@@ -14,6 +14,11 @@
             @foreach($parts as $part)
                 <div class='mb-2 text-lg font-bold'>
                     <a href="/training/menu/{{ $part->id }}">{{ $part->name }}</a>
+                    <form action="/training/part/delete" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $part->id }}">
+                        <input class="border-4 border-solid border-red-500 bg-red-100 p-1 mr-2 my-1 font-bold font-mono text-center ml-5" type="submit" value="削除">
+                    </form>
                 </div>
             @endforeach
         </div>
@@ -24,7 +29,7 @@
                 <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">{{ $selectedPart->name }}</h1>
             </div>
             
-            <form action="/training/menu/{{ $selectedPart->id }}/start" method="POST">
+            <form action="/training/menu/{{ $selectedPart->id }}/start" method="POST" onsubmit="validateForm(event)">
                 @foreach($menus as $menu)
                     @if($menu->part_id == $selectedPart->id)
                         <div class="bg-white p-2 mb-2 w-1/2 mx-auto">
@@ -50,6 +55,18 @@
     </div>
     
     <script>
+        // チェックついてないとき
+        function validateForm(event) {
+            // チェックボックスの要素を取得
+            const checkboxes = document.querySelectorAll('input[name^="menu[id][]"]');
+            
+            // チェックが一つも選択されていない場合にアラートを表示
+            if (!Array.from(checkboxes).some(checkbox => checkbox.checked)) {
+                alert('メニューを選択してください');
+                event.preventDefault(); // フォームの送信を中止
+            }
+        }
+
         // フォルダ追加ボタンがクリックされたときの処理
         document.getElementById('add-part-button').addEventListener('click', function() {
             const partName = prompt("フォルダ名を入力してください:");

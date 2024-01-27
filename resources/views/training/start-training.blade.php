@@ -3,20 +3,25 @@
     <x-slot name="header">トレーニング</x-slot>
 
     <div class="flex h-screen">
-    <!-- 左側 -->
-    <div class="w-1/4 p-4 bg-gray-400">
-        <div class="flex justify-end">
-            <button id="add-part-button" class="border-4 border-solid border-gray-500 bg-white p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
-                フォルダ追加
-            </button>
-        </div>
-
-        @foreach($parts as $part)
-            <div class='mb-2 text-lg font-bold'>
-                <a href="/training/menu/{{ $part->id }}">{{ $part->name }}</a>
+        <!-- 左側 -->
+        <div class="w-1/4 p-4 bg-gray-400">
+            <div class="flex justify-end">
+                <button id="add-part-button" class="border-4 border-solid border-gray-500 bg-white p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
+                    フォルダ追加
+                </button>
             </div>
-        @endforeach
-    </div>
+
+            @foreach($parts as $part)
+                <div class='mb-2 text-lg font-bold'>
+                    <a href="/training/menu/{{ $part->id }}">{{ $part->name }}</a>
+                    <form action="/training/part/delete" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $part->id }}">
+                        <input class="border-4 border-solid border-red-500 bg-red-100 p-1 mr-2 my-1 font-bold font-mono text-center ml-5" type="submit" value="削除">
+                    </form>
+                </div>
+            @endforeach
+        </div>
 
     <!-- 右側 -->
     <div class="w-3/4 p-4 overflow-y-auto">

@@ -10,10 +10,15 @@
                     フォルダ追加
                 </button>
             </div>
-    
+
             @foreach($parts as $part)
                 <div class='mb-2 text-lg font-bold'>
                     <a href="/training/menu/{{ $part->id }}">{{ $part->name }}</a>
+                    <form action="/training/part/delete" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $part->id }}">
+                        <input class="border-4 border-solid border-red-500 bg-red-100 p-1 mr-2 my-1 font-bold font-mono text-center ml-5" type="submit" value="削除">
+                    </form>
                 </div>
             @endforeach
         </div>
