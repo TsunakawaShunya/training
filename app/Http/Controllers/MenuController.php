@@ -31,14 +31,14 @@ class MenuController extends Controller
         return redirect('/training/menu/' . $input["part_id"]);
     }
     
-    public function storePart(Request $request){
-        $input = $request['part'];
-        // 追加
-        $part = new Part();
-        $part->fill($input)->save();
-        $partId = $part->id;
+    public function deleteMenu(Request $request){
+        $menu_id = $request['menu_id'];
+        $part_id = $request['part_id'];
+
+        $menu = Menu::find($input);
+        $menu->delete();
         
-        return redirect('/training/index');
+        return redirect('/training/menu/' . $part_id);
     }
 
 }

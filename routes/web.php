@@ -35,9 +35,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/training/index', [MenuController::class, 'showIndex'])->name('training-index.show');
-    Route::post('/training/part/add', [MenuController::class, 'storePart'])->name('training-part.post');
     Route::get('/training/menu/{part}', [MenuController::class, 'showMenu'])->name('menu.show');
     Route::post('/training/menu/add', [MenuController::class, 'storeMenu'])->name('menu.store');
+    Route::post('/training/menu/delete', [MenuController::class, 'deleteMenu'])->name('menu.store');
 });
 
 Route::middleware('auth')->group(function () {
@@ -78,8 +78,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/friend/applyFrom', [FriendController::class, 'applyFrom'])->name('friend.applyFrom');
 });
 
-Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add')->middleware('auth');;
+Route::middleware('auth')->group(function () {
+    Route::post('/training/part/add', [PartController::class, 'storePart'])->name('training-part.post');
+    Route::post('/training/part/delete', [PartController::class, 'deletePart'])->name('training-part.delete');
+});
 
-Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike')->middleware('auth');;
+Route::patch('/home/calorie', [CalorieController::class, 'add'])->name('calorie.add')->middleware('auth');
+
+Route::post('/friend/post/like', [LikeController::class, 'addLike'])->name('friend.addLike')->middleware('auth');
 
 require __DIR__.'/auth.php';
