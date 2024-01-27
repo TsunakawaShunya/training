@@ -2,10 +2,12 @@
     <x-slot name="title">ショッピング</x-slot>
     <x-slot name="header">ショッピング</x-slot>
     <div class="p-3">
+        <!-- 
         <img class="ml-4" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rakuten.co.jp%2F&psig=AOvVaw3eTVpBfgYNx1gMjnwW70nb&ust=1706250489205000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCY7b_z94MDFQAAAAAdAAAAABAD" alt="楽天市場ロゴ">
-      <div class="m-2 text-lg flex justify-end">
-        トレーニングに関する楽天の商品ページを表示しています．</br>
-        気になる商品のリンクをクリックすると楽天のページへ遷移します．
+        -->
+      <div class="m-2 text-lg text-center font-bold">
+        トレーニングに関する楽天の商品ページを表示しています</br>
+        気になる商品のリンクをクリックすると楽天のページへ遷移します
       </div>
     </div>
     
@@ -15,7 +17,7 @@
             <div class="flex justify-center">
                 <input class="border-3 border-solid border-gray-800 w-4/5" type="text" name="keyword[]" placeholder="検索"/>
             </div>
-            <ul class="w-1/6 ml-auto text-lg">
+            <ul class="w-1/6 ml-auto text-lg font-bold">
               <li>
                 <input type="checkbox" name="keyword[]" value="プロテイン"> 
                 プロテイン
