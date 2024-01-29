@@ -6,8 +6,10 @@
         <!-- 左側 -->
         <div class="w-1/4 p-4 bg-gray-400">
             <div class="flex justify-end">
-                <button id="add-part-button" class="border-4 border-solid border-gray-500 bg-white p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
-                    フォルダ追加
+                <button id="add-part-button" class="p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
+                    <svg class="h-8 w-8 text-gray-800"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                    </svg>
                 </button>
             </div>
 
@@ -41,16 +43,19 @@
                         </div>
                     @endif
                 @endforeach
+                
+                <div class="flex justify-end">
+                    <button id="add-menu-button" class="p-2 mr-2 my-3 font-mono text-center text-3xl">
+                        <svg class="h-10 w-10 text-gray-800"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </button>
+                </div>
+
                 <div class="flex justify-center">
                   <input class="border-4 border-solid border-blue-600 bg-white p-2 font-mono text-center text-5xl" type="submit" value="開始">
                 </div>
             </form>
-            
-            <div class="flex justify-end">
-                <button id="add-menu-button" class="border-4 border-solid border-gray-500 bg-white p-2 mr-2 my-3 font-mono text-center text-3xl">
-                    メニュー追加
-                </button>
-            </div>
         </div>
     </div>
     
