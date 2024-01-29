@@ -47,15 +47,9 @@
                         <input type="hidden" name="post_id" value="{{ $post->id }}">
                         <button type="submit" class="px-4 mb-2">
                             @if($post->likes->contains('user_id', Auth::id()))
-                                <!-- いいね済み -->
-                                <svg class="h-8 w-8 text-red-500"  fill="red" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                                </svg>
+                                <div class="text-red-500">いいね</div> <!-- いいね済み -->
                             @else
-                                <!-- 未いいね -->
-                                <svg class="h-8 w-8 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                                </svg>
+                                <div class="text-gray-800">いいね</div> <!-- 未いいね -->
                             @endif
                         </button>                        
                         <div class="mr-2 ">{{ $post->likes->count() }}</div>

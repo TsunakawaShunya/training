@@ -6,10 +6,8 @@
         <!-- 左側 -->
         <div class="w-1/4 p-4 bg-gray-400">
             <div class="flex justify-end">
-                <button id="add-part-button" class="p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
-                    <svg class="h-8 w-8 text-gray-800"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                    </svg>
+                <button id="add-part-button" class="border-4 border-solid border-gray-500 bg-white p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
+                    フォルダ追加
                 </button>
             </div>
 
@@ -31,7 +29,7 @@
             <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">トレーニング中</h1>
         </div>
         
-        <form action="/training/menu/{{ $checks->first()->menu->part_id }}/end" method="POST">
+        <form action="/training/menu/{{ $checks->first()->menu->part_id }}/end" method="POST" onsubmit="return validateForm(event)">
             @foreach($checks as $check)
                 <div class="bg-white p-2 mb-2 w-1/2 mx-auto">
                     <div class="text-gray-800 font-bold font-mono text-left text-xl">
@@ -48,6 +46,18 @@
     </div>
     
     <script>
+        // チェックついてないとき
+        function validateForm(event) {
+            // チェックボックスの要素を取得
+            const checkboxes = document.querySelectorAll('input[name^="check[menu_id]"]');
+            
+            // チェックが一つも選択されていない場合にアラートを表示
+            if (!Array.from(checkboxes).some(checkbox => checkbox.checked)) {
+                alert('メニューを選択してください');
+                event.preventDefault(); // フォームの送信を中止
+            }
+        }
+        
         // フォルダ追加ボタンがクリックされたときの処理
         document.getElementById('add-part-button').addEventListener('click', function() {
             const partName = prompt("フォルダ名を入力してください:");
