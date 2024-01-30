@@ -49,10 +49,7 @@
                         </div>
                     @endif
                 @endforeach
-<<<<<<< HEAD
-=======
-                
->>>>>>> dev_view10
+
                 <div class="flex justify-center">
                   <input class="border-4 border-solid border-blue-600 bg-white p-2 font-mono text-center text-5xl" type="submit" value="開始">
                 </div>
