@@ -15,7 +15,7 @@ class PartController extends Controller
         $part->fill($input)->save();
         $partId = $part->id;
         
-        return redirect('/training/menu/' . $partId);
+        return $partId;
     }
     
     public function deletePart(Request $request) {
