@@ -24,7 +24,7 @@
         </div>
 
     <!-- 右側 -->
-    <div class="w-3/4 p-4 overflow-y-auto">
+    <div class="w-3/4 p-4 overflow-y-auto overflow-y-auto">
         <div class="my-4">
             <h1 class="text-gray-800 font-bold font-mono text-center text-3xl">トレーニング中</h1>
         </div>
@@ -65,24 +65,26 @@
             console.log(partName, userId);
             
             // FormDataオブジェクトを作成してデータを追加
-            const formData = new FormData();
-            formData.append('part[name]', partName);
-            formData.append('part[user_id]', userId);
-
-            // XMLHttpRequestを作成してPOSTリクエストを送信
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/training/part/add');
-            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // LaravelのCSRFトークンをヘッダーに追加
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        window.location.reload();       // 再読み込み
-                    } else {
-                        console.error('Error:', xhr.statusText);
+            if(partName) {
+                const formData = new FormData();
+                formData.append('part[name]', partName);
+                formData.append('part[user_id]', userId);
+    
+                // XMLHttpRequestを作成してPOSTリクエストを送信
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/training/part/add');
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // LaravelのCSRFトークンをヘッダーに追加
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            window.location.reload();       // 再読み込み
+                        } else {
+                            console.error('Error:', xhr.statusText);
+                        }
                     }
-                }
-            };
-            xhr.send(formData);
+                };
+                xhr.send(formData);
+            }
         });
     </script>
 </x-app-layout>
