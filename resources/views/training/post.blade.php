@@ -6,10 +6,8 @@
         <!-- 左側 -->
         <div class="w-1/4 p-4 bg-gray-400 overflow-y-auto">
             <div class="flex justify-end">
-                <button id="add-part-button" class="p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
-                    <svg class="h-8 w-8 text-gray-800"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                    </svg>
+                <button id="add-part-button" class="border-4 border-solid border-gray-500 bg-white p-1 mr-2 my-1 font-bold font-mono text-center text-lg">
+                    フォルダ追加
                 </button>
             </div>
 
