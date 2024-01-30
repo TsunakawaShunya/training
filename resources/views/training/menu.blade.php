@@ -10,7 +10,6 @@
                     <svg class="h-8 w-8 text-gray-800"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
                     </svg>
-                </button>
             </div>
 
             @foreach($parts as $part)
@@ -51,7 +50,6 @@
                         </div>
                     @endif
                 @endforeach
-                
                 <div class="flex justify-center">
                   <input class="border-4 border-solid border-blue-600 bg-white p-2 font-mono text-center text-5xl" type="submit" value="開始">
                 </div>
